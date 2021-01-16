@@ -7,6 +7,13 @@ public class Hacker : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        ShowMainMenu("Hello Admin");
+    }
+
+    // Show the main menu selection screen
+    void ShowMainMenu(string userGreeting) {
+        Terminal.ClearScreen();
+        Terminal.WriteLine(userGreeting);
         Terminal.WriteLine("Welcome to my Anagram Solver!\n");
         Terminal.WriteLine("Select Game Difficulty:");
         Terminal.WriteLine("Press 1 for Easy.");
