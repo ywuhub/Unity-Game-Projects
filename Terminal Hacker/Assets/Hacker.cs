@@ -30,7 +30,15 @@ public class Hacker : MonoBehaviour
 
     // Listen for user input
     void OnUserInput(string input) {
-        // TODO: Handle differently depending on screen state
+        if (input == "menu") {
+            ShowMainMenu();
+        } else if (currentScreen == Screen.MainMenu) {
+            SelectMenu(input);
+        }
+    }
+
+    // Game selection menu
+    void SelectMenu(string input) {
         if (input == "1") {
             level = 1;
             StartGame();
@@ -40,8 +48,6 @@ public class Hacker : MonoBehaviour
         } else if (input == "3") {
             level = 3;
             StartGame();
-        } else if (input == "menu") {
-            ShowMainMenu();
         } else {
             print("Error: Please choose a valid level.");
         }
