@@ -7,6 +7,9 @@ public class Rocket : MonoBehaviour
     Rigidbody rigidBody;
     AudioSource audioSource;
 
+    [SerializeField] float rcsThrust = 100f;
+    [SerializeField] float mainThrust = 50f;
+
     // Start is called before the first frame update
     void Start() 
     {
@@ -21,13 +24,22 @@ public class Rocket : MonoBehaviour
         RocketPivot();
     }
 
-    // Pivots the rocket clockwise and anti-clockwise
-    void RocketPivot()
+    // When rocket collides onto objects
+    void OnCollisionEnter(Collision collision)
     {
-        if (Input.GetKey("a")) {
-            transform.Rotate(Vector3.forward);
-        } else if (Input.GetKey("d")) {
-            transform.Rotate(-Vector3.forward);
+        switch (collosion.gameObject.tag)
+        {
+            case 'Friendly':
+                // ToDo: Do nothing as rocket hits friendly object
+                print("Hit Friendly Object");
+                break;
+            case 'Fuel':
+                // ToDo: Add fuel for the rocket
+                break;
+            default:
+                print("Dead!");
+                // ToDo: Lose Game
+                break;
         }
     }
 
@@ -35,7 +47,8 @@ public class Rocket : MonoBehaviour
     void RocketThrust() 
     {
         if (Input.GetKey(KeyCode.Space)) {
-                    rigidBody.AddRelativeForce(Vector3.up);
+
+            rigidBody.AddRelativeForce(Vector3.up * mainThrust);
 
             if (!audioSource.isPlaying) {
                 audioSource.Play();
@@ -43,5 +56,23 @@ public class Rocket : MonoBehaviour
         } else {
             audioSource.Stop();
         }
-}
+    }
+
+    // Pivots the rocket clockwise and anti-clockwise
+    void RocketPivot()
+    {
+        rigidBody.freezeRotation = true; // take manual control of rotation
+
+        float rotationCurrFrame = rcsThrust * Time.deltaTime;
+
+        if (Input.GetKey("a")) {
+            transform.Rotate(Vector3.forward * rotationCurrFrame);
+        } else if (Input.GetKey("d")) {
+            transform.Rotate(-Vector3.forward * rotationCurrFrame);
+        }
+
+        rigidBody.freezeRotation = false; // resume physics control of rotation
+    }
+
+    
 }
