@@ -8,7 +8,7 @@ public class Rocket : MonoBehaviour
     AudioSource audioSource;
 
     [SerializeField] float rcsThrust = 100f;
-    [SerializeField] float mainThrust = 50f;
+    [SerializeField] float mainThrust = 10f;
 
     // Start is called before the first frame update
     void Start() 
@@ -27,13 +27,13 @@ public class Rocket : MonoBehaviour
     // When rocket collides onto objects
     void OnCollisionEnter(Collision collision)
     {
-        switch (collosion.gameObject.tag)
+        switch (collision.gameObject.tag)
         {
-            case 'Friendly':
+            case ("Friendly"):
                 // ToDo: Do nothing as rocket hits friendly object
                 print("Hit Friendly Object");
                 break;
-            case 'Fuel':
+            case ("Fuel"):
                 // ToDo: Add fuel for the rocket
                 break;
             default:
