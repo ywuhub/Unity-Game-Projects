@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Rocket : MonoBehaviour
 {
@@ -30,15 +31,17 @@ public class Rocket : MonoBehaviour
         switch (collision.gameObject.tag)
         {
             case ("Friendly"):
-                // ToDo: Do nothing as rocket hits friendly object
                 print("Hit Friendly Object");
                 break;
-            case ("Fuel"):
-                // ToDo: Add fuel for the rocket
+            case ("Finish"):
+                print("Hit Finish");
+                SceneManager.LoadScene(1);
+                break;
+            case ("Enemy"):
+                print("Dead!");
+                SceneManager.LoadScene(0);
                 break;
             default:
-                print("Dead!");
-                // ToDo: Lose Game
                 break;
         }
     }
