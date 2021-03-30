@@ -605,6 +605,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7503506934365825191, guid: bfa22425b5cc7b8489d9604a6dff4b83,
         type: 3}
+      propertyPath: rcsThrust
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 7503506934365825191, guid: bfa22425b5cc7b8489d9604a6dff4b83,
+        type: 3}
       propertyPath: mainThrust
       value: 10
       objectReference: {fileID: 0}

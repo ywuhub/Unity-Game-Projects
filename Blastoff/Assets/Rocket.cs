@@ -8,7 +8,8 @@ public class Rocket : MonoBehaviour
     Rigidbody rigidBody;
     AudioSource audioSource;
 
-    [SerializeField] float rcsThrust = 100f;
+    [Header("Variables")]
+    [SerializeField] float rcsThrust = 50f;
     [SerializeField] float mainThrust = 10f;
 
     // Start is called before the first frame update
